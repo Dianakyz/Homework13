@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Book {
     private final String title;
     private final Author author;
@@ -27,5 +29,24 @@ public class Book {
 
     public String bookInfo() {
         return "Книга: " + this.title + ". Автор: " + this.author.getFullName() + ". Год публикации: " + this.publicationYear;
+    }
+
+    public String toString() {
+        return "Книга: " + this.title + ". Автор: " + this.author.getFullName() + ". Год публикации: " + this.publicationYear;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Book book = (Book) o;
+        return publicationYear == book.publicationYear && Objects.equals(title, book.title) && Objects.equals(author, book.author);
+    }
+
+    public int hashCode() {
+        return Objects.hash(bookInfo());
     }
 }
